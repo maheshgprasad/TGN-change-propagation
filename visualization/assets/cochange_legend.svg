@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 220" role="img" aria-labelledby="title desc">
+  <title id="title">How to read the co-change graph</title>
+  <desc id="desc">A node is a file. A directed edge A to B is the share of A's commits that also included B.</desc>
+  <rect width="980" height="220" fill="#f8fafc"/>
+  <text x="490" y="32" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1f4e79">How to read this graph</text>
+
+  <circle cx="90" cy="118" r="28" fill="#c0392b"/>
+  <text x="90" y="123" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">A</text>
+  <text x="90" y="168" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#1f4e79">Source file</text>
+  <text x="90" y="184" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#5d6d7e">(just changed)</text>
+
+  <line x1="128" y1="118" x2="248" y2="118" stroke="#1f4e79" stroke-width="3"/>
+  <polygon points="258,118 244,111 244,125" fill="#1f4e79"/>
+  <text x="193" y="106" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#1f4e79">0.70</text>
+
+  <circle cx="296" cy="118" r="28" fill="#d35400"/>
+  <text x="296" y="123" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">B</text>
+  <text x="296" y="168" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#1f4e79">Companion file</text>
+  <text x="296" y="184" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#5d6d7e">(often co-changed)</text>
+
+  <rect x="380" y="58" width="560" height="128" rx="12" fill="#eaf2fb" stroke="#d6e0ea"/>
+  <text x="660" y="88" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1f4e79">Arrow A -&gt; B means</text>
+  <text x="660" y="114" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#1f4e79">When file A changed, file B was in the same commit 70% of the time.</text>
+  <text x="660" y="140" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#5d6d7e">score(A-&gt;B) = |commits of A that also contain B| / |commits of A|</text>
+  <text x="660" y="164" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#5d6d7e">The TGN uses these historical scores as input - this is not the model's prediction output.</text>
+</svg>
