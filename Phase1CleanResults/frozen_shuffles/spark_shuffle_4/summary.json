@@ -1,0 +1,36 @@
+{
+  "project": "spark",
+  "shuffle": 4,
+  "evaluation_mode": "frozen_shuffle0_model",
+  "source_model": "Phase1CleanResults/spark_shuffle_0/model.pt",
+  "filtered_commits": 1000,
+  "baseline_split": 500,
+  "mu": 0.005,
+  "rho": 60.0,
+  "predicted_size_cap": 4,
+  "selected_threshold": 0.9500000000000004,
+  "test_means": {
+    "sensitivity": 0.4972540662355477,
+    "specificity": 0.9978256934511435,
+    "ppv": 0.7208504801097394,
+    "gmean": 0.6805255813375101,
+    "f1": 0.5200900836703306,
+    "accuracy": 0.9937934207942244,
+    "mcc": 0.5577294304346151,
+    "legacy_auc": 0.7475398798433455
+  },
+  "behavior": {
+    "evaluated_commits": 486,
+    "mean_actual_size": 3.3683127572016462,
+    "mean_predicted_size": 2.4650205761316872,
+    "cap_hit_rate": 0.4074074074074074,
+    "mean_tp": 1.4300411522633745,
+    "mean_fp": 1.0349794238683128,
+    "mean_fp_cap_hit": 2.2222222222222223,
+    "mean_fp_noncap": 0.21875,
+    "candidate_calls": 16193
+  },
+  "timing_seconds": {
+    "test": 13.236779812999885
+  }
+}

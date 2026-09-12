@@ -1,0 +1,36 @@
+{
+  "project": "cassandra",
+  "shuffle": 4,
+  "evaluation_mode": "frozen_shuffle0_model",
+  "source_model": "Phase1CleanResults/cassandra_shuffle_0/model.pt",
+  "filtered_commits": 1000,
+  "baseline_split": 500,
+  "mu": 0.005,
+  "rho": 95.0,
+  "predicted_size_cap": 8,
+  "selected_threshold": 0.9500000000000004,
+  "test_means": {
+    "sensitivity": 0.5025085910652921,
+    "specificity": 0.9946486976808595,
+    "ppv": 0.5681909671084928,
+    "gmean": 0.6842126078757874,
+    "f1": 0.4574399426461282,
+    "accuracy": 0.9902130346168874,
+    "mcc": 0.48878191446717806,
+    "legacy_auc": 0.7485786443730759
+  },
+  "behavior": {
+    "evaluated_commits": 485,
+    "mean_actual_size": 3.6371134020618556,
+    "mean_predicted_size": 3.971134020618557,
+    "cap_hit_rate": 0.18144329896907216,
+    "mean_tp": 1.622680412371134,
+    "mean_fp": 2.3484536082474228,
+    "mean_fp_cap_hit": 6.011363636363637,
+    "mean_fp_noncap": 1.5365239294710327,
+    "candidate_calls": 85333
+  },
+  "timing_seconds": {
+    "test": 71.71335095500035
+  }
+}

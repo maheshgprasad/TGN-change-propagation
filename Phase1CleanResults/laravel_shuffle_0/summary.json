@@ -1,0 +1,91 @@
+{
+  "project": "laravel",
+  "shuffle": 0,
+  "filtered_commits": 759,
+  "baseline_split": 379,
+  "train_end": 303,
+  "validation_start": 303,
+  "validation_end": 379,
+  "mu": 0.005,
+  "rho": 95,
+  "predicted_size_cap": 4,
+  "selected_threshold": 0.9500000000000004,
+  "training": {
+    "history": [
+      {
+        "epoch": 1,
+        "train_bce": 0.9969759927020037,
+        "val_bce": 0.6045720212858791
+      },
+      {
+        "epoch": 2,
+        "train_bce": 0.9098989755843532,
+        "val_bce": 0.5806527009279292
+      },
+      {
+        "epoch": 3,
+        "train_bce": 0.8852120546910769,
+        "val_bce": 0.5660618594192969
+      },
+      {
+        "epoch": 4,
+        "train_bce": 0.8783369608584123,
+        "val_bce": 0.5685135510003642
+      },
+      {
+        "epoch": 5,
+        "train_bce": 0.8654988699281759,
+        "val_bce": 0.5601106635892605
+      },
+      {
+        "epoch": 6,
+        "train_bce": 0.8630680108671904,
+        "val_bce": 0.5845028082272801
+      },
+      {
+        "epoch": 7,
+        "train_bce": 0.8695910095823106,
+        "val_bce": 0.5685069473076468
+      },
+      {
+        "epoch": 8,
+        "train_bce": 0.853459270995666,
+        "val_bce": 0.560583976806607
+      }
+    ],
+    "train_rows": 64883,
+    "val_rows": 30935,
+    "train_positive": 514,
+    "val_positive": 156,
+    "pos_weight": 125.23151397705078,
+    "best_val_bce": 0.5601106635892605
+  },
+  "test_means": {
+    "sensitivity": 0.5509803921568628,
+    "specificity": 0.9982514895150706,
+    "ppv": 0.8441176470588235,
+    "gmean": 0.7292302277979558,
+    "f1": 0.6239589169000933,
+    "accuracy": 0.994647484089881,
+    "mcc": 0.6569268027515421,
+    "legacy_auc": 0.7746159408359666
+  },
+  "behavior": {
+    "evaluated_commits": 255,
+    "mean_actual_size": 2.2823529411764705,
+    "mean_predicted_size": 1.6980392156862745,
+    "cap_hit_rate": 0.10980392156862745,
+    "mean_tp": 1.219607843137255,
+    "mean_fp": 0.47843137254901963,
+    "mean_fp_cap_hit": 2.25,
+    "mean_fp_noncap": 0.2599118942731278,
+    "candidate_calls": 2439
+  },
+  "timing_seconds": {
+    "sample_build": 0.9342396990000452,
+    "training": 34.43582890300013,
+    "calibration": 2.992714311999862,
+    "test": 1.3355683429999772,
+    "total": 39.69835125700001
+  }
+}

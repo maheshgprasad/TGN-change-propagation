@@ -1,0 +1,86 @@
+{
+  "project": "spark",
+  "shuffle": 0,
+  "filtered_commits": 1000,
+  "baseline_split": 500,
+  "train_end": 400,
+  "validation_start": 400,
+  "validation_end": 500,
+  "mu": 0.005,
+  "rho": 60,
+  "predicted_size_cap": 4,
+  "selected_threshold": 0.9500000000000004,
+  "training": {
+    "history": [
+      {
+        "epoch": 1,
+        "train_bce": 0.7192795433180239,
+        "val_bce": 0.6433684912833852
+      },
+      {
+        "epoch": 2,
+        "train_bce": 0.6676975803720532,
+        "val_bce": 0.6023089902351537
+      },
+      {
+        "epoch": 3,
+        "train_bce": 0.6558631906756912,
+        "val_bce": 0.6312000847827581
+      },
+      {
+        "epoch": 4,
+        "train_bce": 0.652950829467246,
+        "val_bce": 0.617928544562331
+      },
+      {
+        "epoch": 5,
+        "train_bce": 0.6424758798823166,
+        "val_bce": 0.6312662352353441
+      },
+      {
+        "epoch": 6,
+        "train_bce": 0.6386677131769172,
+        "val_bce": 0.6092380500529246
+      },
+      {
+        "epoch": 7,
+        "train_bce": 0.6353996100425482,
+        "val_bce": 0.6247296117879306
+      }
+    ],
+    "train_rows": 159766,
+    "val_rows": 113873,
+    "train_positive": 2542,
+    "val_positive": 1002,
+    "pos_weight": 61.85050964355469,
+    "best_val_bce": 0.6023089902351537
+  },
+  "test_means": {
+    "sensitivity": 0.5030202821869488,
+    "specificity": 0.997839089475467,
+    "ppv": 0.7187928669410152,
+    "gmean": 0.6840225289395635,
+    "f1": 0.5231819963301445,
+    "accuracy": 0.993844723254674,
+    "mcc": 0.5604075689283827,
+    "legacy_auc": 0.7504296858312078
+  },
+  "behavior": {
+    "evaluated_commits": 486,
+    "mean_actual_size": 3.3683127572016462,
+    "mean_predicted_size": 2.4814814814814814,
+    "cap_hit_rate": 0.40329218106995884,
+    "mean_tp": 1.4506172839506173,
+    "mean_fp": 1.0308641975308641,
+    "mean_fp_cap_hit": 2.142857142857143,
+    "mean_fp_noncap": 0.2793103448275862,
+    "candidate_calls": 16244
+  },
+  "timing_seconds": {
+    "sample_build": 3.035191804999158,
+    "training": 90.52567220800029,
+    "calibration": 10.3845654630004,
+    "test": 14.836897640999268,
+    "total": 118.78232711699911
+  }
+}

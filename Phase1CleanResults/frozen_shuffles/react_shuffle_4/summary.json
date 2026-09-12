@@ -1,0 +1,36 @@
+{
+  "project": "react",
+  "shuffle": 4,
+  "evaluation_mode": "frozen_shuffle0_model",
+  "source_model": "Phase1CleanResults/react_shuffle_0/model.pt",
+  "filtered_commits": 1000,
+  "baseline_split": 500,
+  "mu": 0.005,
+  "rho": 95.0,
+  "predicted_size_cap": 6,
+  "selected_threshold": 0.9500000000000004,
+  "test_means": {
+    "sensitivity": 0.6181240657698056,
+    "specificity": 0.9958576488544466,
+    "ppv": 0.554559043348281,
+    "gmean": 0.76373400856748,
+    "f1": 0.523833951300319,
+    "accuracy": 0.9935975668633493,
+    "mcc": 0.550458487955143,
+    "legacy_auc": 0.8069908573121263
+  },
+  "behavior": {
+    "evaluated_commits": 446,
+    "mean_actual_size": 2.789237668161435,
+    "mean_predicted_size": 3.7376681614349776,
+    "cap_hit_rate": 0.3452914798206278,
+    "mean_tp": 1.5896860986547086,
+    "mean_fp": 2.1479820627802693,
+    "mean_fp_cap_hit": 4.175324675324675,
+    "mean_fp_noncap": 1.0787671232876712,
+    "candidate_calls": 17228
+  },
+  "timing_seconds": {
+    "test": 13.64620202200058
+  }
+}

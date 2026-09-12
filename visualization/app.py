@@ -54,11 +54,11 @@ from metrics import (
     runs_as_frame,
     summarize_runs,
 )
+from clean_attention import render_clean_attention
 
 PAGES = (
-    "Understand the task",
-    "This project's numbers",
-    "Compare",
+    "Baseline results",
+    "Clean attention evidence",
     "Input graph",
 )
 ASSETS = Path(__file__).resolve().parent / "assets"
@@ -643,10 +643,9 @@ def render_graph(project_id: str | None) -> None:
         )
 
 
-st.title("TGN Change Propagation — Result Dashboard")
+st.title("Change Propagation — Phase 1 Results")
 st.caption(
-    "Visualization layer for the authors' Temporal Graph Network experiments. "
-    "This app only reads existing CSV outputs and change-set files."
+    "Baseline reproduction, clean temporal-attention comparison, and input co-change graph."
 )
 
 projects = cached_projects()
@@ -679,11 +678,9 @@ st.sidebar.caption("Files are opened read-only.")
 
 render_takeaway(result)
 
-if page == "Understand the task":
-    render_understand_task()
-elif page == "This project's numbers":
+if page == "Baseline results":
     render_project_numbers(result)
-elif page == "Compare":
-    render_compare(result, projects)
+elif page == "Clean attention evidence":
+    render_clean_attention(project_id)
 else:
     render_graph(project_id)

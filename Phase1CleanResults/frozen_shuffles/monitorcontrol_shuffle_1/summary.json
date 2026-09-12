@@ -1,0 +1,36 @@
+{
+  "project": "monitorcontrol",
+  "shuffle": 1,
+  "evaluation_mode": "frozen_shuffle0_model",
+  "source_model": "Phase1CleanResults/monitorcontrol_shuffle_0/model.pt",
+  "filtered_commits": 128,
+  "baseline_split": 64,
+  "mu": 0.005,
+  "rho": 95.0,
+  "predicted_size_cap": 10,
+  "selected_threshold": 0.9000000000000004,
+  "test_means": {
+    "sensitivity": 0.3623249473659309,
+    "specificity": 0.9998137108792846,
+    "ppv": 0.994535519125683,
+    "gmean": 0.5824432036092901,
+    "f1": 0.5064374284239278,
+    "accuracy": 0.9734051718765363,
+    "mcc": 0.5736499122946171,
+    "legacy_auc": 0.6810693291226078
+  },
+  "behavior": {
+    "evaluated_commits": 61,
+    "mean_actual_size": 4.19672131147541,
+    "mean_predicted_size": 1.1639344262295082,
+    "cap_hit_rate": 0.0,
+    "mean_tp": 1.1475409836065573,
+    "mean_fp": 0.01639344262295082,
+    "mean_fp_cap_hit": null,
+    "mean_fp_noncap": 0.01639344262295082,
+    "candidate_calls": 2315
+  },
+  "timing_seconds": {
+    "test": 1.5774655579989485
+  }
+}
