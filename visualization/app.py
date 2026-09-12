@@ -54,11 +54,13 @@ from metrics import (
     runs_as_frame,
     summarize_runs,
 )
+from clean_attention import render_clean_attention
 
 PAGES = (
     "Understand the task",
     "This project's numbers",
     "Compare",
+    "Clean attention evidence",
     "Input graph",
 )
 ASSETS = Path(__file__).resolve().parent / "assets"
@@ -685,5 +687,7 @@ elif page == "This project's numbers":
     render_project_numbers(result)
 elif page == "Compare":
     render_compare(result, projects)
+elif page == "Clean attention evidence":
+    render_clean_attention(project_id)
 else:
     render_graph(project_id)
