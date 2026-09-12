@@ -1,6 +1,8 @@
-# TGN Change Propagation — Visualization Dashboard
+# Phase 1 visualization
 
-A **read-only** Streamlit dashboard for the authors' experiment outputs. It does not train the model, change hyperparameters, or write to `Results/` or `ShuffledData/`.
+The repository uses one read-only Streamlit dashboard for the Phase-1 results.
+
+It does not train models or modify experiment outputs.
 
 ## Run
 
@@ -11,66 +13,50 @@ pip install -r visualization/requirements.txt
 streamlit run visualization/app.py
 ```
 
-The app looks for:
+## Views
 
-- `Results/Metrics/directed_<project>_results.csv`
-- `Results/ConfMatrix/directed_<project>_results_<run>.csv`
-- `ShuffledData/<shuffle>/ChangeSets/<project>.csv` (graph reconstruction only)
+The dashboard is intentionally limited to three views.
 
-## Metrics CSV schema
+### 1. Baseline results
 
-Taken from `TGN_model.py` (the writer), not from the README (which omits columns):
+Shows the reproduced Germanos metrics for the selected repository, including the confusion matrix.
 
-```text
-graph_type, project, sensitivity, specificity, ppv, gmean, fmeasure, accuracy, mcc, auc,
-lstm_layer_size_1, lstm_layer_size_2, cutoff_value_for_coch, cutoff_change_set_predicted_size, optimizer, epochs
-```
+### 2. Clean attention evidence
 
-Each **row is one experimental shuffle/run**. Metric values on that row are already means over test change-sets.
+Shows the Phase-1 improvement in a compact form:
 
-## Confusion-matrix CSV schema
+- baseline vs clean F1 and MCC;
+- F1/MCC delta by repository;
+- recall, precision, false-positive and prediction-size behaviour;
+- robustness across all five shuffles when frozen-shuffle outputs are available.
 
-No header. Each row is one **test change-set**:
+Detailed commit traces and threshold calibration are hidden under optional expanders.
 
-```text
-tp, tn, fp, fn
-```
+### 3. Input graph
 
-The dashboard can sum all rows in a run, or show a single change-set.
+Reconstructs the historical directed co-change graph from the change-set files.
 
-## Published vs reproduced
+The graph is a reconstruction of the input co-change relationships, not an exported neural-model state and not the predicted change set.
 
-Optional. Edit `visualization/reference_results.csv` with values from the paper (0–1 scale, same columns as above). Leave extra rows empty if you do not have published numbers. The dashboard will not invent them.
+## Data read by the dashboard
 
-## Graph view
-
-The authors never save NetworkX graphs, adjacency matrices, or edge lists. `temporal_node_cochanges` lives only in memory during `TGN_model.py`.
-
-The dashboard **reconstructs** directed co-changeability from change-set CSVs with the same formula as `TGN_model.py`:
+Baseline:
 
 ```text
-score(A → B) = |commits(A) ∩ commits(B)| / |commits(A)|
+Results/Metrics/
+Results/ConfMatrix/
+ShuffledData/
 ```
 
-in the window starting when both files exist. Interactive graphs use NetworkX + PyVis (arrows, hover labels). This is an input-graph sketch, not an exported TGN snapshot.
+Clean attention:
 
-If you later want an exact model-state plot, a safe export (without changing training behaviour) would be to write `temporal_node_cochanges[-1]` (or `graph` in `updated_TGN.py`) to JSON/edgelist at the end of a run.
-
-
-## Clean attention evidence
-
-On the `phase1-clean-attention` branch, the existing Streamlit app also reads
-`Phase1CleanResults/<project>_shuffle_0/` and adds a **Clean attention evidence**
-page. It shows:
-
-- baseline vs clean-attention F1 and MCC,
-- per-project deltas,
-- mean false-positive and prediction-size behavior,
-- validation threshold curves, and
-- commit-level candidate decision traces.
-
-Run the same dashboard command:
-
-```bash
-streamlit run visualization/app.py
+```text
+Phase1CleanResults/<project>_shuffle_0/
+Phase1CleanResults/frozen_shuffles/
 ```
+
+## Important metric note
+
+The reproduced code labels `(Sensitivity + Specificity) / 2` as AUC.
+
+In the Phase-1 analysis this should be described as **Legacy AUC / Balanced Accuracy**, not as a true ROC-AUC.
