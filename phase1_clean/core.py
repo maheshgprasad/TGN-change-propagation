@@ -714,17 +714,10 @@ def evaluate_dfs(
         )
 
         if seed is None:
-            history.add_commit(
-                state,
-                actual,
-                commit_idx,
-                ts,
-            )
-            state.update(
-                actual,
-                commit_idx,
-                ts,
-            )
+            # Match the reproduced Germanos protocol exactly: a test commit
+            # with no usable seed is skipped and is NOT incorporated into the
+            # online graph/history. This matters because otherwise a skipped
+            # commit can make later commits newly eligible for evaluation.
             continue
 
         stack = [seed]
