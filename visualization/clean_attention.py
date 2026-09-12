@@ -423,9 +423,15 @@ def render_clean_attention(preferred_project: str | None = None) -> None:
         hide_index=True,
         use_container_width=True,
     )
-    st.caption(
-        "Ant has no persisted shuffle-0 baseline confusion file, so no direct delta is reported for Ant."
-    )
+    missing = frame[frame["baseline_f1"].isna()]["Project"].tolist()
+    if missing:
+        st.caption(
+            "Direct shuffle-0 comparison is unavailable for: " + ", ".join(missing) + "."
+        )
+    else:
+        st.caption(
+            "All clean-attention projects have a persisted shuffle-0 baseline confusion file."
+        )
 
     left, right = st.columns(2)
     with left:
