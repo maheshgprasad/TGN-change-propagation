@@ -408,18 +408,18 @@ def render_clean_attention(preferred_project: str | None = None) -> None:
         "Clean MCC",
         "Δ MCC",
     ]
+    display_table = table.copy()
+    for column in ("Baseline F1", "Clean F1", "Baseline MCC", "Clean MCC"):
+        display_table[column] = display_table[column].map(
+            lambda value: "—" if pd.isna(value) else f"{value:.3f}"
+        )
+    for column in ("Δ F1", "Δ MCC"):
+        display_table[column] = display_table[column].map(
+            lambda value: "—" if pd.isna(value) else f"{value:+.3f}"
+        )
+
     st.dataframe(
-        table.style.format(
-            {
-                "Baseline F1": "{:.3f}",
-                "Clean F1": "{:.3f}",
-                "Δ F1": "{:+.3f}",
-                "Baseline MCC": "{:.3f}",
-                "Clean MCC": "{:.3f}",
-                "Δ MCC": "{:+.3f}",
-            },
-            na_rep="—",
-        ),
+        display_table,
         hide_index=True,
         use_container_width=True,
     )
