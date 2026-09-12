@@ -1,0 +1,36 @@
+{
+  "project": "lucene",
+  "shuffle": 2,
+  "evaluation_mode": "frozen_shuffle0_model",
+  "source_model": "Phase1CleanResults/lucene_shuffle_0/model.pt",
+  "filtered_commits": 1000,
+  "baseline_split": 500,
+  "mu": 0.1,
+  "rho": 95.0,
+  "predicted_size_cap": 8,
+  "selected_threshold": 0.9500000000000004,
+  "test_means": {
+    "sensitivity": 0.4723741553716365,
+    "specificity": 0.9995442208564042,
+    "ppv": 0.9067980088760945,
+    "gmean": 0.6633680643974378,
+    "f1": 0.5772970102944914,
+    "accuracy": 0.996451896285518,
+    "mcc": 0.6264162507410732,
+    "legacy_auc": 0.7359591881140203
+  },
+  "behavior": {
+    "evaluated_commits": 397,
+    "mean_actual_size": 3.256926952141058,
+    "mean_predicted_size": 1.5390428211586902,
+    "cap_hit_rate": 0.0025188916876574307,
+    "mean_tp": 1.2670025188916876,
+    "mean_fp": 0.27204030226700254,
+    "mean_fp_cap_hit": 7.0,
+    "mean_fp_noncap": 0.255050505050505,
+    "candidate_calls": 4902
+  },
+  "timing_seconds": {
+    "test": 3.95461752600022
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "project": "alamofire",
+  "shuffle": 3,
+  "evaluation_mode": "frozen_shuffle0_model",
+  "source_model": "Phase1CleanResults/alamofire_shuffle_0/model.pt",
+  "filtered_commits": 163,
+  "baseline_split": 81,
+  "mu": 0.005,
+  "rho": 95.0,
+  "predicted_size_cap": 3,
+  "selected_threshold": 0.7500000000000002,
+  "test_means": {
+    "sensitivity": 0.5714285714285714,
+    "specificity": 0.9932761858628805,
+    "ppv": 0.8571428571428571,
+    "gmean": 0.7464336149462936,
+    "f1": 0.659047619047619,
+    "accuracy": 0.9788765923548888,
+    "mcc": 0.6767529947126948,
+    "legacy_auc": 0.7823523786457258
+  },
+  "behavior": {
+    "evaluated_commits": 70,
+    "mean_actual_size": 2.0,
+    "mean_predicted_size": 1.5,
+    "cap_hit_rate": 0.12857142857142856,
+    "mean_tp": 1.1428571428571428,
+    "mean_fp": 0.35714285714285715,
+    "mean_fp_cap_hit": 1.6666666666666667,
+    "mean_fp_noncap": 0.16393442622950818,
+    "candidate_calls": 484
+  },
+  "timing_seconds": {
+    "test": 0.304130055999849
+  }
+}

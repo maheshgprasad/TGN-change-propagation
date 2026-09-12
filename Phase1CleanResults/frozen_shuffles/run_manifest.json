@@ -1,0 +1,24 @@
+{
+  "evaluation_mode": "frozen_shuffle0_model",
+  "evaluated_shuffles": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "projects": [
+    "alamofire",
+    "ant",
+    "cassandra",
+    "laravel",
+    "lucene",
+    "monitorcontrol",
+    "pydriller",
+    "react",
+    "rocketmqclients",
+    "spark"
+  ],
+  "failures": [],
+  "comparison_rows": 50
+}

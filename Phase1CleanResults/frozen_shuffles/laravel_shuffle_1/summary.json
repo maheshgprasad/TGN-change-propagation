@@ -1,0 +1,36 @@
+{
+  "project": "laravel",
+  "shuffle": 1,
+  "evaluation_mode": "frozen_shuffle0_model",
+  "source_model": "Phase1CleanResults/laravel_shuffle_0/model.pt",
+  "filtered_commits": 759,
+  "baseline_split": 379,
+  "mu": 0.005,
+  "rho": 95.0,
+  "predicted_size_cap": 4,
+  "selected_threshold": 0.9500000000000004,
+  "test_means": {
+    "sensitivity": 0.5405228758169934,
+    "specificity": 0.9979332278927429,
+    "ppv": 0.8183006535947713,
+    "gmean": 0.7228790393561361,
+    "f1": 0.60765639589169,
+    "accuracy": 0.9942376323342715,
+    "mcc": 0.6395268065986677,
+    "legacy_auc": 0.7692280518548682
+  },
+  "behavior": {
+    "evaluated_commits": 255,
+    "mean_actual_size": 2.2823529411764705,
+    "mean_predicted_size": 1.7568627450980392,
+    "cap_hit_rate": 0.12156862745098039,
+    "mean_tp": 1.196078431372549,
+    "mean_fp": 0.5607843137254902,
+    "mean_fp_cap_hit": 2.4516129032258065,
+    "mean_fp_noncap": 0.29910714285714285,
+    "candidate_calls": 2448
+  },
+  "timing_seconds": {
+    "test": 1.9453517839992855
+  }
+}

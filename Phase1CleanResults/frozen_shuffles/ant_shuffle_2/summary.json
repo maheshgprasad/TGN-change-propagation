@@ -1,0 +1,36 @@
+{
+  "project": "ant",
+  "shuffle": 2,
+  "evaluation_mode": "frozen_shuffle0_model",
+  "source_model": "Phase1CleanResults/ant_shuffle_0/model.pt",
+  "filtered_commits": 1000,
+  "baseline_split": 500,
+  "mu": 0.005,
+  "rho": 95.0,
+  "predicted_size_cap": 7,
+  "selected_threshold": 0.9500000000000004,
+  "test_means": {
+    "sensitivity": 0.5372765904261967,
+    "specificity": 0.99468640560964,
+    "ppv": 0.47105361829771275,
+    "gmean": 0.7065035229639276,
+    "f1": 0.4185958252887387,
+    "accuracy": 0.9917907830163909,
+    "mcc": 0.45427654176993776,
+    "legacy_auc": 0.7659814980179184
+  },
+  "behavior": {
+    "evaluated_commits": 381,
+    "mean_actual_size": 3.309711286089239,
+    "mean_predicted_size": 4.698162729658793,
+    "cap_hit_rate": 0.4540682414698163,
+    "mean_tp": 1.5328083989501313,
+    "mean_fp": 3.1653543307086616,
+    "mean_fp_cap_hit": 5.236994219653179,
+    "mean_fp_noncap": 1.4423076923076923,
+    "candidate_calls": 46344
+  },
+  "timing_seconds": {
+    "test": 34.07052957999986
+  }
+}

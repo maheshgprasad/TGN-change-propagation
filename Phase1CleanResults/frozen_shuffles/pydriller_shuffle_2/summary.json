@@ -1,0 +1,36 @@
+{
+  "project": "pydriller",
+  "shuffle": 2,
+  "evaluation_mode": "frozen_shuffle0_model",
+  "source_model": "Phase1CleanResults/pydriller_shuffle_0/model.pt",
+  "filtered_commits": 218,
+  "baseline_split": 109,
+  "mu": 0.1,
+  "rho": 75.0,
+  "predicted_size_cap": 4,
+  "selected_threshold": 0.9000000000000004,
+  "test_means": {
+    "sensitivity": 0.46171171171171166,
+    "specificity": 0.9983176622862099,
+    "ppv": 0.972972972972973,
+    "gmean": 0.6668178603583307,
+    "f1": 0.6013513513513513,
+    "accuracy": 0.9716925515884074,
+    "mcc": 0.6461201328510455,
+    "legacy_auc": 0.7300146869989608
+  },
+  "behavior": {
+    "evaluated_commits": 74,
+    "mean_actual_size": 2.608108108108108,
+    "mean_predicted_size": 1.1891891891891893,
+    "cap_hit_rate": 0.013513513513513514,
+    "mean_tp": 1.1081081081081081,
+    "mean_fp": 0.08108108108108109,
+    "mean_fp_cap_hit": 2.0,
+    "mean_fp_noncap": 0.0547945205479452,
+    "candidate_calls": 552
+  },
+  "timing_seconds": {
+    "test": 0.4350120299986884
+  }
+}

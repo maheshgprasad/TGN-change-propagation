@@ -1,0 +1,36 @@
+{
+  "project": "rocketmqclients",
+  "shuffle": 3,
+  "evaluation_mode": "frozen_shuffle0_model",
+  "source_model": "Phase1CleanResults/rocketmqclients_shuffle_0/model.pt",
+  "filtered_commits": 352,
+  "baseline_split": 176,
+  "mu": 0.2,
+  "rho": 60.0,
+  "predicted_size_cap": 6,
+  "selected_threshold": 0.9500000000000004,
+  "test_means": {
+    "sensitivity": 0.4218111203960262,
+    "specificity": 0.9947185440200665,
+    "ppv": 0.7027253668763104,
+    "gmean": 0.6163709182541763,
+    "f1": 0.43179986216378535,
+    "accuracy": 0.9838274578311506,
+    "mcc": 0.4807568281333686,
+    "legacy_auc": 0.7082648322080463
+  },
+  "behavior": {
+    "evaluated_commits": 159,
+    "mean_actual_size": 5.056603773584905,
+    "mean_predicted_size": 3.10062893081761,
+    "cap_hit_rate": 0.1949685534591195,
+    "mean_tp": 1.6226415094339623,
+    "mean_fp": 1.4779874213836477,
+    "mean_fp_cap_hit": 3.7096774193548385,
+    "mean_fp_noncap": 0.9375,
+    "candidate_calls": 3343
+  },
+  "timing_seconds": {
+    "test": 2.4689758610002173
+  }
+}
