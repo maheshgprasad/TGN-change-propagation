@@ -61,31 +61,31 @@
     "best_val_bce": 0.5527715910891278
   },
   "test_means": {
-    "sensitivity": 0.4238095238095238,
-    "specificity": 0.9991972159816749,
-    "ppv": 0.9841269841269841,
-    "gmean": 0.6414562912842379,
-    "f1": 0.5752380952380952,
-    "accuracy": 0.976327094228481,
-    "mcc": 0.6275304458982837,
-    "legacy_auc": 0.7115033698955994
+    "sensitivity": 0.45833333333333337,
+    "specificity": 0.9986807343884125,
+    "ppv": 0.9707207207207207,
+    "gmean": 0.6642071206433481,
+    "f1": 0.5990990990990991,
+    "accuracy": 0.971763197011839,
+    "mcc": 0.6436235231797542,
+    "legacy_auc": 0.7285070338608729
   },
   "behavior": {
-    "evaluated_commits": 105,
-    "mean_actual_size": 2.6857142857142855,
-    "mean_predicted_size": 1.0857142857142856,
+    "evaluated_commits": 74,
+    "mean_actual_size": 2.608108108108108,
+    "mean_predicted_size": 1.162162162162162,
     "cap_hit_rate": 0.0,
-    "mean_tp": 1.0476190476190477,
-    "mean_fp": 0.0380952380952381,
+    "mean_tp": 1.0945945945945945,
+    "mean_fp": 0.06756756756756757,
     "mean_fp_cap_hit": null,
-    "mean_fp_noncap": 0.0380952380952381,
-    "candidate_calls": 665
+    "mean_fp_noncap": 0.06756756756756757,
+    "candidate_calls": 534
   },
   "timing_seconds": {
-    "sample_build": 0.0837617889997091,
-    "training": 3.276145112999984,
-    "calibration": 0.7534022640002149,
-    "test": 0.35921090700003333,
-    "total": 4.4725200729999415
+    "sample_build": 0.08326602100032687,
+    "training": 4.037505774999772,
+    "calibration": 1.0644501010001477,
+    "test": 0.400015139000061,
+    "total": 5.585237036000308
   }
 }
