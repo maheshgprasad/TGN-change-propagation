@@ -55,3 +55,22 @@ score(A → B) = |commits(A) ∩ commits(B)| / |commits(A)|
 in the window starting when both files exist. Interactive graphs use NetworkX + PyVis (arrows, hover labels). This is an input-graph sketch, not an exported TGN snapshot.
 
 If you later want an exact model-state plot, a safe export (without changing training behaviour) would be to write `temporal_node_cochanges[-1]` (or `graph` in `updated_TGN.py`) to JSON/edgelist at the end of a run.
+
+
+## Clean attention evidence
+
+On the `phase1-clean-attention` branch, the existing Streamlit app also reads
+`Phase1CleanResults/<project>_shuffle_0/` and adds a **Clean attention evidence**
+page. It shows:
+
+- baseline vs clean-attention F1 and MCC,
+- per-project deltas,
+- mean false-positive and prediction-size behavior,
+- validation threshold curves, and
+- commit-level candidate decision traces.
+
+Run the same dashboard command:
+
+```bash
+streamlit run visualization/app.py
+```
