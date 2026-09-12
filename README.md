@@ -114,6 +114,64 @@ Following the original experiment, outputs may include:
 
 The reported metrics can include sensitivity, specificity, positive predictive value (PPV), geometric mean, F1 score, accuracy, Matthews correlation coefficient (MCC), and area under the ROC curve (AUC).
 
+## Phase 1 extension on this branch
+
+The `phase1-clean-attention` branch adds a controlled Phase-1 improvement while leaving the reproduced Germanos implementation intact.
+
+The improvement replaces repeated candidate-specific LSTM fitting during DFS prediction with one shared causal temporal-attention scorer that is trained once and reused.
+
+It adds:
+
+- richer historical co-change and activity features;
+- commit-recency and real elapsed-time features;
+- recent source interaction history;
+- validation-based threshold selection; and
+- persisted decision traces for explaining false positives, false negatives, and prediction-size behaviour.
+
+The graph construction, seed selection, DFS traversal, mu filtering, rho prediction cap, and confusion-matrix accounting remain aligned with the reproduced baseline.
+
+### Shuffle-0 evaluation
+
+Run all ten baseline repositories:
+
+```bash
+python phase1_clean/run_all.py --shuffle 0 --device cpu --continue-on-error
+```
+
+### Robustness across shuffles 1-4
+
+The remaining four shuffles change file ordering within commits. They are used as robustness tests rather than as independent datasets.
+
+The shuffle-0 model, preprocessing, threshold, and prediction cap are frozen and reused:
+
+```bash
+python phase1_clean/evaluate_frozen_shuffles.py \
+  --device cpu \
+  --continue-on-error
+```
+
+No retraining or threshold recalibration is performed for shuffles 1-4.
+
+### Visualization
+
+Use the existing Streamlit dashboard:
+
+```bash
+streamlit run visualization/app.py
+```
+
+The interface is intentionally limited to:
+
+1. **Baseline results**
+2. **Clean attention evidence**
+3. **Input graph**
+
+Detailed candidate traces and threshold plots are available only as optional drill-down views.
+
+### Metric terminology
+
+The reproduced implementation labels `(Sensitivity + Specificity) / 2` as AUC. In this project it is reported as **Legacy AUC / Balanced Accuracy** to distinguish it from true ROC-AUC.
+
 ## Citation
 
 If you use this repository, reproduce the experiment, or use the original datasets or method, cite the original paper:
