@@ -50,3 +50,35 @@ Each run creates `Phase1CleanResults/<project>_shuffle_<n>/` with:
 The trace and commit-level outputs are intended to provide visible evidence for why precision, recall, F1, or MCC improved or worsened.
 
 This is a clean reimplementation of the same Phase-1 research idea, not a byte-for-byte reconstruction of the earlier Cursor workspace. Small numerical differences are expected.
+
+
+## Supported baseline projects
+
+The clean implementation now supports the ten repositories for which the Phase-1 baseline was established:
+
+- alamofire
+- ant
+- cassandra
+- laravel
+- lucene
+- monitorcontrol
+- pydriller
+- react
+- rocketmqclients
+- spark
+
+## Run all ten sequentially
+
+Start with shuffle 0:
+
+```bash
+python phase1_clean/run_all.py --shuffle 0 --device cpu --continue-on-error
+```
+
+For a quicker first pass:
+
+```bash
+python phase1_clean/run_all.py --shuffle 0 --device cpu --max-epochs 8 --threshold-step 0.05 --continue-on-error
+```
+
+Each project runs in its own process, so memory is released between projects.
