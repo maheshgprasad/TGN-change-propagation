@@ -86,6 +86,14 @@ def load_threshold_grid(project: str, shuffle: int = 0) -> pd.DataFrame:
 
 
 @st.cache_data(show_spinner=False)
+def load_frozen_project_summary() -> pd.DataFrame:
+    path = CLEAN_ROOT / "frozen_shuffles" / "project_summary.csv"
+    if not path.is_file() or path.stat().st_size == 0:
+        return pd.DataFrame()
+    return pd.read_csv(path)
+
+
+@st.cache_data(show_spinner=False)
 def baseline_shuffle_summary(project: str, shuffle: int, cap: int | None = None) -> dict | None:
     path = CONF_ROOT / f"directed_{project}_results_{shuffle}.csv"
     frame = load_confusion_matrix(path)
@@ -366,11 +374,9 @@ def _render_candidate_explorer(project: str, predictions: pd.DataFrame, trace: p
 
 
 def render_clean_attention(preferred_project: str | None = None) -> None:
-    st.header("Baseline vs clean temporal attention")
-    st.markdown(
-        "This section uses the existing dashboard to compare the frozen Germanos shuffle-0 "
-        "baseline with the clean shared temporal-attention implementation. It also exposes "
-        "the persisted prediction traces used to explain why a repository improved or worsened."
+    st.header("Clean attention — Phase 1 evidence")
+    st.caption(
+        "Simple comparison of the Germanos baseline and the shared temporal-attention scorer."
     )
 
     frame = comparison_frame(0)
@@ -382,12 +388,12 @@ def render_clean_attention(preferred_project: str | None = None) -> None:
     f1_wins = int((comparable["delta_f1"] > 0).sum())
     mcc_wins = int((comparable["delta_mcc"] > 0).sum())
 
-    a, b, c, d = st.columns(4)
-    a.metric("Clean projects", len(frame))
-    b.metric("Directly comparable", len(comparable))
-    c.metric("F1 wins", f"{f1_wins} / {len(comparable)}")
-    d.metric("MCC wins", f"{mcc_wins} / {len(comparable)}")
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Projects compared", len(comparable))
+    c2.metric("F1 improved", f"{f1_wins} / {len(comparable)}")
+    c3.metric("MCC improved", f"{mcc_wins} / {len(comparable)}")
 
+    st.subheader("Shuffle 0 summary")
     table = frame[
         [
             "Project",
@@ -408,6 +414,7 @@ def render_clean_attention(preferred_project: str | None = None) -> None:
         "Clean MCC",
         "Δ MCC",
     ]
+
     display_table = table.copy()
     for column in ("Baseline F1", "Clean F1", "Baseline MCC", "Clean MCC"):
         display_table[column] = display_table[column].map(
@@ -423,29 +430,67 @@ def render_clean_attention(preferred_project: str | None = None) -> None:
         hide_index=True,
         use_container_width=True,
     )
-    missing = frame[frame["baseline_f1"].isna()]["Project"].tolist()
-    if missing:
+    st.altair_chart(_delta_chart(frame), use_container_width=True)
+
+    robustness = load_frozen_project_summary()
+    if not robustness.empty:
+        st.subheader("Robustness across all 5 shuffles")
+        view = robustness.copy()
+        view["Project"] = view["project"].map(display_name)
+        keep = [
+            "Project",
+            "f1_wins",
+            "mcc_wins",
+            "mean_baseline_f1",
+            "mean_clean_f1",
+            "mean_delta_f1",
+            "mean_baseline_mcc",
+            "mean_clean_mcc",
+            "mean_delta_mcc",
+        ]
+        view = view[keep]
+        view.columns = [
+            "Project",
+            "F1 wins",
+            "MCC wins",
+            "Baseline F1 mean",
+            "Clean F1 mean",
+            "Δ F1 mean",
+            "Baseline MCC mean",
+            "Clean MCC mean",
+            "Δ MCC mean",
+        ]
+        for column in (
+            "Baseline F1 mean",
+            "Clean F1 mean",
+            "Baseline MCC mean",
+            "Clean MCC mean",
+        ):
+            view[column] = view[column].map(
+                lambda value: "—" if pd.isna(value) else f"{value:.3f}"
+            )
+        for column in ("Δ F1 mean", "Δ MCC mean"):
+            view[column] = view[column].map(
+                lambda value: "—" if pd.isna(value) else f"{value:+.3f}"
+            )
+        view["F1 wins"] = view["F1 wins"].map(lambda n: f"{int(n)}/5")
+        view["MCC wins"] = view["MCC wins"].map(lambda n: f"{int(n)}/5")
+        st.dataframe(view, hide_index=True, use_container_width=True)
         st.caption(
-            "Direct shuffle-0 comparison is unavailable for: " + ", ".join(missing) + "."
+            "Shuffles 1–4 reuse the shuffle-0 trained model, preprocessing, prediction cap, and threshold. "
+            "Only within-commit file ordering changes."
         )
     else:
-        st.caption(
-            "All clean-attention projects have a persisted shuffle-0 baseline confusion file."
+        st.info(
+            "Robustness results for shuffles 1–4 are not present yet. "
+            "Run phase1_clean/evaluate_frozen_shuffles.py after pulling the latest branch."
         )
 
-    left, right = st.columns(2)
-    with left:
-        st.altair_chart(
-            _comparison_chart(frame, "f1", "F1"),
-            use_container_width=True,
-        )
-    with right:
-        st.altair_chart(_delta_chart(frame), use_container_width=True)
-
+    st.subheader("Why did a project improve or worsen?")
     project_options = frame["project"].tolist()
     default = preferred_project if preferred_project in project_options else project_options[0]
     project = st.selectbox(
-        "Evidence project",
+        "Project",
         options=project_options,
         index=project_options.index(default),
         format_func=display_name,
@@ -458,40 +503,41 @@ def render_clean_attention(preferred_project: str | None = None) -> None:
     baseline = baseline_shuffle_summary(project, 0, cap)
     row = frame[frame["project"] == project].iloc[0]
 
-    st.subheader(f"Why did {display_name(project)} change?")
     st.info(_evidence_text(row))
 
-    c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Selected threshold", f"{float(clean['selected_threshold']):.2f}")
-    c2.metric("Prediction cap", cap)
-    c3.metric("Evaluated commits", int(clean["behavior"]["evaluated_commits"]))
-    c4.metric("Total clean runtime", f"{float(clean['timing_seconds']['total']):.1f} s")
-
     if baseline is not None:
-        x1, x2, x3 = st.columns(3)
-        x1.metric(
+        b1, b2, b3, b4 = st.columns(4)
+        b1.metric(
+            "Recall",
+            f"{clean['test_means']['sensitivity']:.3f}",
+            delta=f"{clean['test_means']['sensitivity'] - baseline['means']['sensitivity']:+.3f}",
+        )
+        b2.metric(
+            "Precision",
+            f"{clean['test_means']['ppv']:.3f}",
+            delta=f"{clean['test_means']['ppv'] - baseline['means']['ppv']:+.3f}",
+        )
+        b3.metric(
             "Mean false positives",
-            f"{clean['behavior']['mean_fp']:.3f}",
-            delta=f"{clean['behavior']['mean_fp'] - baseline['behavior']['mean_fp']:+.3f}",
+            f"{clean['behavior']['mean_fp']:.2f}",
+            delta=f"{clean['behavior']['mean_fp'] - baseline['behavior']['mean_fp']:+.2f}",
             delta_color="inverse",
         )
-        x2.metric(
-            "Mean predicted size",
-            f"{clean['behavior']['mean_predicted_size']:.3f}",
-            delta=f"{clean['behavior']['mean_predicted_size'] - baseline['behavior']['mean_predicted_size']:+.3f}",
+        b4.metric(
+            "Mean predicted files",
+            f"{clean['behavior']['mean_predicted_size']:.2f}",
+            delta=f"{clean['behavior']['mean_predicted_size'] - baseline['behavior']['mean_predicted_size']:+.2f}",
             delta_color="off",
         )
-        x3.metric(
-            "Cap-hit rate",
-            f"{clean['behavior']['cap_hit_rate'] * 100:.1f}%",
-            delta=f"{(clean['behavior']['cap_hit_rate'] - baseline['behavior'].get('cap_hit_rate', 0.0)) * 100:+.1f} pp",
-            delta_color="off",
-        )
-        st.altair_chart(_behavior_chart(baseline, clean), use_container_width=True)
-    else:
-        st.warning("Direct baseline behavior comparison is unavailable for this project.")
 
-    with st.expander("Threshold calibration evidence"):
+    with st.expander("Optional: inspect one commit"):
+        _render_candidate_explorer(
+            project,
+            load_clean_predictions(project, 0),
+            load_candidate_trace(project, 0),
+        )
+
+    with st.expander("Optional: threshold selection"):
         grid = load_threshold_grid(project, 0)
         if grid.empty:
             st.info("No threshold grid is available.")
@@ -507,7 +553,7 @@ def render_clean_attention(preferred_project: str | None = None) -> None:
                 alt.Chart(long)
                 .mark_line(point=True)
                 .encode(
-                    x=alt.X("threshold:Q", title="Decision threshold"),
+                    x=alt.X("threshold:Q", title="Threshold"),
                     y=alt.Y("Score:Q", title="Validation score"),
                     color=alt.Color("Metric:N", title=None),
                     tooltip=[
@@ -516,15 +562,6 @@ def render_clean_attention(preferred_project: str | None = None) -> None:
                         alt.Tooltip("Score:Q", format=".3f"),
                     ],
                 )
-                .properties(height=300),
+                .properties(height=260),
                 use_container_width=True,
             )
-            st.caption(
-                "Threshold selection uses validation DFS replay. Final test rows are not used to choose the threshold."
-            )
-
-    _render_candidate_explorer(
-        project,
-        load_clean_predictions(project, 0),
-        load_candidate_trace(project, 0),
-    )
