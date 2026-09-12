@@ -20,8 +20,15 @@ from model import ModelConfig, TemporalAttentionScorer
 
 PROJECT_CONFIG = {
     "alamofire": {"mu": 0.005, "rho": 95},
-    "pydriller": {"mu": 0.1, "rho": 75},
     "ant": {"mu": 0.005, "rho": 95},
+    "cassandra": {"mu": 0.005, "rho": 95},
+    "laravel": {"mu": 0.005, "rho": 95},
+    "lucene": {"mu": 0.1, "rho": 95},
+    "monitorcontrol": {"mu": 0.005, "rho": 95},
+    "pydriller": {"mu": 0.1, "rho": 75},
+    "react": {"mu": 0.005, "rho": 95},
+    "rocketmqclients": {"mu": 0.2, "rho": 60},
+    "spark": {"mu": 0.005, "rho": 60},
 }
 
 BASE_FEATURES = (
