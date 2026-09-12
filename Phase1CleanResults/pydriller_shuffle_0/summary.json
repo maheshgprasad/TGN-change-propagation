@@ -1,0 +1,91 @@
+{
+  "project": "pydriller",
+  "shuffle": 0,
+  "filtered_commits": 218,
+  "baseline_split": 109,
+  "train_end": 87,
+  "validation_start": 87,
+  "validation_end": 109,
+  "mu": 0.1,
+  "rho": 75,
+  "predicted_size_cap": 4,
+  "selected_threshold": 0.9000000000000004,
+  "training": {
+    "history": [
+      {
+        "epoch": 1,
+        "train_bce": 1.1384346945332446,
+        "val_bce": 0.7612418354376259
+      },
+      {
+        "epoch": 2,
+        "train_bce": 0.9546338605351199,
+        "val_bce": 0.5766208527042742
+      },
+      {
+        "epoch": 3,
+        "train_bce": 0.8883614611020484,
+        "val_bce": 0.5527715910891278
+      },
+      {
+        "epoch": 4,
+        "train_bce": 0.8623995694789688,
+        "val_bce": 0.5615096730788725
+      },
+      {
+        "epoch": 5,
+        "train_bce": 0.8511752776004389,
+        "val_bce": 0.5777873753128085
+      },
+      {
+        "epoch": 6,
+        "train_bce": 0.8456064232669557,
+        "val_bce": 0.583044588750688
+      },
+      {
+        "epoch": 7,
+        "train_bce": 0.840700081788777,
+        "val_bce": 0.583377992124435
+      },
+      {
+        "epoch": 8,
+        "train_bce": 0.8340970670632663,
+        "val_bce": 0.5851593955882524
+      }
+    ],
+    "train_rows": 5673,
+    "val_rows": 2257,
+    "train_positive": 272,
+    "val_positive": 88,
+    "pos_weight": 19.856616973876953,
+    "best_val_bce": 0.5527715910891278
+  },
+  "test_means": {
+    "sensitivity": 0.4238095238095238,
+    "specificity": 0.9991972159816749,
+    "ppv": 0.9841269841269841,
+    "gmean": 0.6414562912842379,
+    "f1": 0.5752380952380952,
+    "accuracy": 0.976327094228481,
+    "mcc": 0.6275304458982837,
+    "legacy_auc": 0.7115033698955994
+  },
+  "behavior": {
+    "evaluated_commits": 105,
+    "mean_actual_size": 2.6857142857142855,
+    "mean_predicted_size": 1.0857142857142856,
+    "cap_hit_rate": 0.0,
+    "mean_tp": 1.0476190476190477,
+    "mean_fp": 0.0380952380952381,
+    "mean_fp_cap_hit": null,
+    "mean_fp_noncap": 0.0380952380952381,
+    "candidate_calls": 665
+  },
+  "timing_seconds": {
+    "sample_build": 0.0837617889997091,
+    "training": 3.276145112999984,
+    "calibration": 0.7534022640002149,
+    "test": 0.35921090700003333,
+    "total": 4.4725200729999415
+  }
+}

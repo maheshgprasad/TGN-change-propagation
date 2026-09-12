@@ -1,0 +1,91 @@
+{
+  "project": "react",
+  "shuffle": 0,
+  "filtered_commits": 1000,
+  "baseline_split": 500,
+  "train_end": 400,
+  "validation_start": 400,
+  "validation_end": 500,
+  "mu": 0.005,
+  "rho": 95,
+  "predicted_size_cap": 6,
+  "selected_threshold": 0.9500000000000004,
+  "training": {
+    "history": [
+      {
+        "epoch": 1,
+        "train_bce": 0.8711201385525504,
+        "val_bce": 0.5836066008650522
+      },
+      {
+        "epoch": 2,
+        "train_bce": 0.8133627964128838,
+        "val_bce": 0.5728299171554698
+      },
+      {
+        "epoch": 3,
+        "train_bce": 0.7999891093416754,
+        "val_bce": 0.5692072166210699
+      },
+      {
+        "epoch": 4,
+        "train_bce": 0.7985345602362643,
+        "val_bce": 0.5696956886808293
+      },
+      {
+        "epoch": 5,
+        "train_bce": 0.7850161803423097,
+        "val_bce": 0.5985701591358201
+      },
+      {
+        "epoch": 6,
+        "train_bce": 0.7870224534569535,
+        "val_bce": 0.5796510198250674
+      },
+      {
+        "epoch": 7,
+        "train_bce": 0.7770287711550121,
+        "val_bce": 0.5864894105134535
+      },
+      {
+        "epoch": 8,
+        "train_bce": 0.7747120767852848,
+        "val_bce": 0.6037168099342458
+      }
+    ],
+    "train_rows": 161438,
+    "val_rows": 86268,
+    "train_positive": 1124,
+    "val_positive": 318,
+    "pos_weight": 142.62811279296875,
+    "best_val_bce": 0.5692072166210699
+  },
+  "test_means": {
+    "sensitivity": 0.6014556040756914,
+    "specificity": 0.9964365727136564,
+    "ppv": 0.5731077147016012,
+    "gmean": 0.7525670806996864,
+    "f1": 0.527051708601927,
+    "accuracy": 0.9942525161194364,
+    "mcc": 0.5528056321696839,
+    "legacy_auc": 0.798946088394674
+  },
+  "behavior": {
+    "evaluated_commits": 458,
+    "mean_actual_size": 2.7816593886462884,
+    "mean_predicted_size": 3.519650655021834,
+    "cap_hit_rate": 0.28820960698689957,
+    "mean_tp": 1.5327510917030567,
+    "mean_fp": 1.9868995633187774,
+    "mean_fp_cap_hit": 4.295454545454546,
+    "mean_fp_noncap": 1.0521472392638036,
+    "candidate_calls": 18119
+  },
+  "timing_seconds": {
+    "sample_build": 2.3923549270002695,
+    "training": 85.33619255399981,
+    "calibration": 7.073511613999926,
+    "test": 12.484993662999841,
+    "total": 107.28705275799985
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "project": "monitorcontrol",
+  "shuffle": 0,
+  "filtered_commits": 128,
+  "baseline_split": 64,
+  "train_end": 51,
+  "validation_start": 51,
+  "validation_end": 64,
+  "mu": 0.005,
+  "rho": 95,
+  "predicted_size_cap": 10,
+  "selected_threshold": 0.9000000000000004,
+  "training": {
+    "history": [
+      {
+        "epoch": 1,
+        "train_bce": 1.0452489070252242,
+        "val_bce": 0.5680303757688242
+      },
+      {
+        "epoch": 2,
+        "train_bce": 0.8358642002216078,
+        "val_bce": 0.47925140702443003
+      },
+      {
+        "epoch": 3,
+        "train_bce": 0.7910210575711326,
+        "val_bce": 0.47732883576028506
+      },
+      {
+        "epoch": 4,
+        "train_bce": 0.7496727902207112,
+        "val_bce": 0.48351871377170674
+      },
+      {
+        "epoch": 5,
+        "train_bce": 0.7280303354236201,
+        "val_bce": 0.49031766205004673
+      },
+      {
+        "epoch": 6,
+        "train_bce": 0.7087291568504653,
+        "val_bce": 0.4642147086135141
+      },
+      {
+        "epoch": 7,
+        "train_bce": 0.6850414510336896,
+        "val_bce": 0.46867170748325676
+      },
+      {
+        "epoch": 8,
+        "train_bce": 0.673671782564064,
+        "val_bce": 0.48148426647324283
+      }
+    ],
+    "train_rows": 6861,
+    "val_rows": 2626,
+    "train_positive": 686,
+    "val_positive": 102,
+    "pos_weight": 9.001458168029785,
+    "best_val_bce": 0.4642147086135141
+  },
+  "test_means": {
+    "sensitivity": 0.3576214332262719,
+    "specificity": 1.0,
+    "ppv": 1.0,
+    "gmean": 0.5793775928118099,
+    "f1": 0.5045007543584392,
+    "accuracy": 0.9742803565948543,
+    "mcc": 0.5732091870824789,
+    "legacy_auc": 0.678810716613136
+  },
+  "behavior": {
+    "evaluated_commits": 62,
+    "mean_actual_size": 4.209677419354839,
+    "mean_predicted_size": 1.1451612903225807,
+    "cap_hit_rate": 0.0,
+    "mean_tp": 1.1451612903225807,
+    "mean_fp": 0.0,
+    "mean_fp_cap_hit": null,
+    "mean_fp_noncap": 0.0,
+    "candidate_calls": 2378
+  },
+  "timing_seconds": {
+    "sample_build": 0.10699986100007663,
+    "training": 3.9143928829998913,
+    "calibration": 6.998223065000275,
+    "test": 1.3245978349996221,
+    "total": 12.344213643999865
+  }
+}
